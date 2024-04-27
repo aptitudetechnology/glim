@@ -39,6 +39,11 @@ if ! which blkid &>/dev/null; then
   exit 1
 fi
 USBDEV1=`blkid -L GLIM | head -n 1`
+#We still want to continue if there is an EXT4 or NTFS partition with the correct label.
+#Here are some custom variables to check.
+USBEXT4=`blkid -L GLIMEXT4 | head -n 1`
+USBNTFS=`blkid -L GLIMNTFS | head -n 1`
+#echo "Found NTFS partition: $USBNTFS"
 
 # Sanity check : we found one partition to use with matching label
 if [[ -z "$USBDEV1" ]]; then
@@ -55,8 +60,24 @@ if [[ ! -b "$USBDEV" ]]; then
 fi
 echo "Found block device where to install GRUB2 : ${USBDEV}"
 if [[ `ls -1 ${USBDEV}* | wc -l` -ne 2 ]]; then
-  echo "ERROR: ${USBDEV1} isn't the only partition on ${USBDEV}"
+  echo "That's interresting! ${USBDEV1} isn't the only partition on ${USBDEV}"
+  
+  # Check if either EXT4 or NTFS partition was found
+
+if [[ -z "$USBEXT4" && -z "$USBNTFS" ]]; then
+  echo "ERROR: No partitions labeled 'GLIMEXT4' (EXT4) or 'GLIMNTFS' (NTFS) found."
   exit 1
+fi
+
+# Indicate which partition was found (simple)
+if [[ ! -z "$USBEXT4" ]]; then
+  echo "Found EXT4 partition at $USBEXT4 labeled 'GLIMEXT4' for GLIM."
+fi
+
+if [[ ! -z "$USBNTFS" ]]; then
+  echo "Found NTFS partition at $USBNTFS labeled 'GLIMNTFS' for GLIM."
+fi
+
 fi
 
 # Sanity check : our partition is mounted
@@ -169,4 +190,3 @@ args=(
 for DIR in $(sed "${args[@]}" "$(dirname "$0")"/README.md); do
   [[ -d ${USBMNT}/boot/iso/${DIR} ]] || ${CMD_PREFIX} mkdir ${USBMNT}/boot/iso/${DIR}
 done
-
