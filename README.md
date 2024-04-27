@@ -67,6 +67,7 @@ The supported `boot/iso/` sub-directories (in alphabetical order) are :
 * [`gentoo`](https://www.gentoo.org/)
 * [`gparted`](https://gparted.org/)
 * [`grml`](https://grml.org/)
+* [`hirens-boot-cd`](https://www.hirensbootcd.org/) -_ In Progress
 * [`ipxe`](https://ipxe.org/) - _.iso or .efi_
 * [`kali`](https://www.kali.org/)
 * [`kubuntu`](https://kubuntu.org/)
