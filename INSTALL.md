@@ -30,7 +30,7 @@ isn't the case for many with NTFS (Ubuntu does, Fedora doesn't) and exFAT
 (Ubuntu doesn't, Fedora does). So FAT32 stays the safe bet.
 
 In this version of glim you can also have an EXT4 and or NTFS partition but you must label them "GLIMEXT4" and "GLIMNTFS". 
-The glimsh script will check for them.
+The glim.sh script will check for them.
 
 Screenshots
 -----------
