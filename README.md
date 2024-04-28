@@ -1,8 +1,13 @@
 GRUB2 Live ISO Multiboot
 ========================
 
+Please see:
 https://github.com/thias/glim | http://glee.thias.es/GLIM
+That's the offical repo for this project.
+This is actually a fork where I experiment with some changes that would allow me to use it everyday in my work as a call-out computer tech and in running a IT support business.
+I will try to include the tools I use in that line of work.
 
+I have also rewritten the script to allow a EXT4 and NTFS parition so long as they are labelled "GLIMEXT4" and "GLIMNTFS".
 
 Overview
 --------
