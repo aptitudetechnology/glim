@@ -110,6 +110,9 @@ disabled, so to skip any distribution, just don't copy any files into it.
 Download the right ISO image(s) to the matching directory. If you require
 boot parameter tweaks, edit the appropriate `boot/grub2/inc-*.cfg` file.
 
+
+
+
 Items order in the menu
 ------------
 
@@ -145,6 +148,24 @@ Sample ordered menu:
 
 Special Cases
 -------------
+
+Hirens Boot CD
+------------
+I got this working after many hours of trial and error.
+
+It works by using iPXE and wimboot. I also extracted the contents of the hirens ISO file and put it in a directory called hirens.
+You will need to git clone https://github.com/ipxe/ipxe and https://github.com/ipxe/wimboot
+You will need to build them. Please follow the instructions here: https://medium.com/@peter.bolch/how-to-netboot-with-ipxe-6a41db514dee
+Pay special attention to:
+
+```
+$ make bin/ipxe.lkrn bin-x86_64-efi/ipxe.efi EMBED=boot.ipxe
+$ ./util/genfsimg -o ipxe.iso bin/ipxe.lkrn bin-x86_64-efi/ipxe.efi
+```
+Note you will need the boot.ipxe file which is under the ipxe/hirens folder in this project.
+I copied wimboot file to the GLIM/boot/iso folder and the in-x86_64-efi/ipxe.efi file to the GLIM/boot/iso/hirens folder. 
+
+I extracted the contents of the hirens iso /GLIM/boot/iso/hirens as well.
 
 ### iPXE
 
