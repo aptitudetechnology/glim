@@ -99,6 +99,7 @@ The supported `boot/iso/` sub-directories (in alphabetical order) are :
 * [`ubuntubudgie`](https://ubuntubudgie.org/)
 * [`ubuntu`](https://ubuntu.com/)
 * [`void`](https://voidlinux.org/)
+* [`xcp-ng`](https://xcp-ng.org/#community) -_ Coming soon!
 * [`xubuntu`](https://xubuntu.org/)
 * [`zorinos`](https://zorin.com/os/)
 
