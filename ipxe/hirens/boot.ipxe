@@ -5,7 +5,7 @@ ifopen net0
 dhcp net0
 #set base-url file:/${isopath}
 #set base-url file:
-#set base-url http://192.168.1.117
+#set base-url http://
 
 :start
 menu Please choose an option:
