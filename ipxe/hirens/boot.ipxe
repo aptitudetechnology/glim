@@ -1,0 +1,33 @@
+#!ipxe 
+
+echo Configuring IP...
+ifopen net0
+dhcp net0
+#set base-url file:/${isopath}
+#set base-url file:
+#set base-url http://192.168.1.117
+
+:start
+menu Please choose an option:
+item hirens Hirens Boot CD PE x64
+item exit Exit
+choose --default hirens --timeout 5000 selected
+goto ${selected}
+
+:hirens
+echo Booting Hirens Boot CD PE x64...
+imgfree
+
+kernel file:/boot/iso/wimboot
+
+#echo sleeping for 5 seconds ....
+#sleep 5
+initrd -n bootmgr file:/boot/iso/hirens/BOOTMGR       bootmgr ||
+initrd -n bootmgr.efi file:/boot/iso/hirens/bootmgr.efi   bootmgr.efi ||      
+initrd -n bcd         file:/boot/iso/hirens/boot/bcd  bcd||
+initrd -n boot.sdi    file:/boot/iso/hirens/boot/boot.sdi  boot.sdi||
+initrd -n boot.wim    file:/boot/iso/hirens/sources/boot.wim boot.wim
+boot
+
+#:exit
+#exit
